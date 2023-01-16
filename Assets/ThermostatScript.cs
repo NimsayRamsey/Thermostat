@@ -41,7 +41,7 @@ public class ThermostatScript : MonoBehaviour {
 	//-----------------------------------------------------//
 	//READONLY LIBRARIES
 	private string[] TempTypeNames = new string[] {"C", "F"};
-	private int[] TempTypeConvers = new int[] {40, 100};
+	private int[] TempTypeConvers = new int[] {40, 99};
 
 	private string[] mazeNames = new string[] {"Alpha", "Beta", "Gamma", "Delta", "Epsilon", "Zeta", "Eta", "Theta"};
 	private int[] mazeWeather = new int[] {     9,       2,      6,       4,       5,         7,      3,     8};
@@ -58,20 +58,20 @@ public class ThermostatScript : MonoBehaviour {
 
 	private int[,,,] mazeDirections = new int[,,,] { //Up, Right, Down, Left
 		{//Alpha
-			{{0, 1, 1, 0}, {0, 1, 1, 1}, {0, 1, 1, 1}, {0, 1, 1, 1}, {0, 0, 1, 1}},
-			{{1, 1, 1, 0}, {1, 1, 1, 1}, {1, 1, 1, 1}, {1, 1, 1, 1}, {1, 0, 1, 1}},
-			{{1, 1, 1, 0}, {1, 1, 1, 1}, {1, 1, 1, 1}, {1, 1, 1, 1}, {1, 0, 1, 1}},
-			{{1, 1, 1, 0}, {1, 1, 1, 1}, {1, 1, 1, 1}, {1, 1, 1, 1}, {1, 0, 1, 1}},
-			{{1, 1, 0, 0}, {1, 1, 0, 1}, {1, 1, 0, 1}, {1, 1, 0, 1}, {1, 0, 0, 1}}
+			{{1, 0, 1, 0}, {0, 0, 1, 0}, {1, 0, 1, 0}, {1, 0, 1, 0}, {1, 0, 0, 0}},
+			{{1, 1, 0, 0}, {1, 0, 0, 1}, {1, 0, 1, 0}, {1, 1, 1, 0}, {0, 0, 1, 1}},
+			{{0, 1, 0, 1}, {0, 0, 1, 1}, {1, 0, 1, 0}, {1, 0, 0, 0}, {1, 1, 0, 0}},
+			{{0, 1, 1, 0}, {1, 0, 1, 1}, {1, 0, 1, 0}, {0, 1, 1, 0}, {0, 0, 0, 1}},
+			{{1, 0, 1, 1}, {1, 0, 0, 0}, {1, 0, 1, 0}, {1, 0, 1, 0}, {0, 1, 1, 0}}
 		},
 		{//Beta
-			{{0, 1, 1, 0}, {0, 1, 1, 1}, {0, 1, 1, 1}, {0, 1, 1, 1}, {0, 0, 1, 1}},
-			{{1, 1, 1, 0}, {1, 1, 1, 1}, {1, 1, 1, 1}, {1, 1, 1, 1}, {1, 0, 1, 1}},
-			{{1, 1, 1, 0}, {1, 1, 1, 1}, {1, 1, 1, 1}, {1, 1, 1, 1}, {1, 0, 1, 1}},
-			{{1, 1, 1, 0}, {1, 1, 1, 1}, {1, 1, 1, 1}, {1, 1, 1, 1}, {1, 0, 1, 1}},
-			{{1, 1, 0, 0}, {1, 1, 0, 1}, {1, 1, 0, 1}, {1, 1, 0, 1}, {1, 0, 0, 1}}
+			{{0, 1, 0, 0}, {1, 0, 0, 1}, {0, 1, 0, 0}, {1, 0, 1, 1}, {0, 0, 1, 0}},
+			{{0, 1, 1, 0}, {0, 1, 0, 1}, {0, 1, 1, 1}, {1, 0, 0, 1}, {1, 0, 1, 0}},
+			{{1, 0, 1, 1}, {0, 1, 0, 0}, {1, 1, 0, 1}, {0, 0, 1, 1}, {1, 1, 1, 0}},
+			{{1, 1, 1, 0}, {0, 0, 0, 1}, {0, 1, 1, 0}, {1, 1, 0, 1}, {1, 0, 0, 1}},
+			{{1, 1, 0, 0}, {0, 1, 1, 1}, {1, 0, 0, 1}, {0, 1, 1, 0}, {0, 0, 0, 1}}
 		},
-		{//Gamma //DONE//
+		{//Gamma
 			{{0, 1, 1, 0}, {0, 1, 0, 1}, {1, 1, 1, 1}, {0, 1, 0, 1}, {0, 0, 1, 1}},
 			{{1, 0, 1, 0}, {0, 1, 1, 0}, {1, 1, 0, 1}, {0, 0, 1, 1}, {1, 0, 1, 0}},
 			{{1, 1, 1, 1}, {1, 0, 1, 1}, {0, 0, 0, 0}, {1, 1, 1, 0}, {1, 1, 1, 1}},
@@ -79,13 +79,13 @@ public class ThermostatScript : MonoBehaviour {
 			{{1, 1, 0, 0}, {0, 1, 0, 1}, {1, 1, 1, 1}, {0, 1, 0, 1}, {1, 0, 0, 1}}
 		},
 		{//Delta
-			{{0, 1, 1, 0}, {0, 1, 1, 1}, {0, 1, 1, 1}, {0, 1, 1, 1}, {0, 0, 1, 1}},
-			{{1, 1, 1, 0}, {1, 1, 1, 1}, {1, 1, 1, 1}, {1, 1, 1, 1}, {1, 0, 1, 1}},
-			{{1, 1, 1, 0}, {1, 1, 1, 1}, {1, 1, 1, 1}, {1, 1, 1, 1}, {1, 0, 1, 1}},
-			{{1, 1, 1, 0}, {1, 1, 1, 1}, {1, 1, 1, 1}, {1, 1, 1, 1}, {1, 0, 1, 1}},
-			{{1, 1, 0, 0}, {1, 1, 0, 1}, {1, 1, 0, 1}, {1, 1, 0, 1}, {1, 0, 0, 1}}
+			{{0, 1, 1, 1}, {1, 0, 1, 1}, {1, 0, 1, 0}, {0, 1, 0, 0}, {1, 1, 1, 1}},
+			{{1, 0, 0, 0}, {1, 1, 0, 0}, {1, 1, 0, 1}, {0, 1, 0, 1}, {1, 0, 0, 1}},
+			{{0, 1, 0, 1}, {0, 1, 0, 1}, {0, 1, 0, 1}, {0, 1, 0, 1}, {0, 1, 0, 1}},
+			{{0, 0, 1, 0}, {0, 1, 1, 0}, {0, 1, 0, 1}, {0, 1, 1, 1}, {0, 0, 1, 1}},
+			{{1, 1, 0, 0}, {1, 0, 1, 1}, {0, 1, 1, 0}, {1, 0, 0, 1}, {1, 0, 1, 0}}
 		},
-		{//Epsilon //DONE//
+		{//Epsilon
 			{{0, 1, 1, 0}, {0, 1, 1, 1}, {0, 1, 0, 1}, {0, 0, 1, 1}, {1, 0, 1, 0}},
 			{{1, 0, 1, 0}, {1, 1, 0, 0}, {0, 1, 1, 1}, {1, 1, 1, 1}, {1, 0, 1, 1}},
 			{{1, 0, 1, 0}, {0, 1, 1, 0}, {1, 0, 1, 1}, {1, 0, 1, 0}, {1, 0, 0, 0}},
@@ -93,25 +93,25 @@ public class ThermostatScript : MonoBehaviour {
 			{{0, 1, 0, 0}, {1, 1, 0, 1}, {0, 1, 0, 1}, {1, 1, 0, 1}, {0, 0, 1, 1}}
 		},
 		{//Zeta
-			{{0, 1, 1, 0}, {0, 1, 1, 1}, {0, 1, 1, 1}, {0, 1, 1, 1}, {0, 0, 1, 1}},
-			{{1, 1, 1, 0}, {1, 1, 1, 1}, {1, 1, 1, 1}, {1, 1, 1, 1}, {1, 0, 1, 1}},
-			{{1, 1, 1, 0}, {1, 1, 1, 1}, {1, 1, 1, 1}, {1, 1, 1, 1}, {1, 0, 1, 1}},
-			{{1, 1, 1, 0}, {1, 1, 1, 1}, {1, 1, 1, 1}, {1, 1, 1, 1}, {1, 0, 1, 1}},
-			{{1, 1, 0, 0}, {1, 1, 0, 1}, {1, 1, 0, 1}, {1, 1, 0, 1}, {1, 0, 0, 1}}
+			{{1, 1, 0, 1}, {0, 1, 0, 1}, {1, 1, 0, 1}, {0, 0, 0, 1}, {1, 1, 1, 0}},
+			{{0, 0, 1, 0}, {0, 1, 1, 0}, {0, 0, 0, 1}, {0, 0, 1, 0}, {1, 0, 1, 0}},
+			{{1, 0, 1, 1}, {1, 0, 1, 0}, {0, 0, 0, 0}, {1, 0, 1, 0}, {1, 1, 1, 0}},
+			{{1, 0, 1, 0}, {1, 0, 0, 0}, {0, 1, 0, 0}, {1, 0, 0, 1}, {1, 0, 0, 0}},
+			{{1, 0, 1, 1}, {0, 1, 0, 0}, {0, 1, 1, 1}, {0, 1, 0, 1}, {0, 1, 1, 1}}
 		},
-		{//Eta //DONE//
-			{{1, 0, 1, 0}, {1, 0, 1, 1}, {0, 1, 1, 0}, {1, 0, 0, 1}, {1, 0, 1, 1}},
+		{//Eta
+			{{1, 0, 1, 0}, {1, 0, 1, 0}, {0, 1, 1, 0}, {1, 0, 0, 1}, {1, 0, 1, 1}},
 			{{1, 0, 0, 1}, {1, 0, 1, 0}, {1, 1, 1, 0}, {0, 1, 1, 1}, {1, 1, 1, 1}},
 			{{0, 1, 0, 1}, {1, 1, 0, 1}, {1, 0, 0, 1}, {1, 0, 1, 0}, {1, 1, 0, 0}},
 			{{0, 1, 0, 1}, {0, 0, 1, 1}, {0, 1, 1, 0}, {1, 0, 0, 1}, {0, 1, 1, 0}},
 			{{0, 1, 1, 0}, {1, 0, 1, 1}, {1, 1, 0, 0}, {0, 1, 1, 1}, {1, 0, 1, 1}}
 		},
 		{//Theta
-			{{0, 1, 1, 0}, {0, 1, 1, 1}, {0, 1, 1, 1}, {0, 1, 1, 1}, {0, 0, 1, 1}},
-			{{1, 1, 1, 0}, {1, 1, 1, 1}, {1, 1, 1, 1}, {1, 1, 1, 1}, {1, 0, 1, 1}},
-			{{1, 1, 1, 0}, {1, 1, 1, 1}, {1, 1, 1, 1}, {1, 1, 1, 1}, {1, 0, 1, 1}},
-			{{1, 1, 1, 0}, {1, 1, 1, 1}, {1, 1, 1, 1}, {1, 1, 1, 1}, {1, 0, 1, 1}},
-			{{1, 1, 0, 0}, {1, 1, 0, 1}, {1, 1, 0, 1}, {1, 1, 0, 1}, {1, 0, 0, 1}}
+			{{0, 1, 0, 1}, {0, 1, 1, 1}, {0, 1, 0, 1}, {0, 0, 1, 1}, {0, 1, 1, 0}},
+			{{0, 1, 1, 0}, {1, 0, 0, 1}, {0, 1, 1, 0}, {1, 0, 0, 1}, {1, 0, 1, 0}},
+			{{1, 1, 0, 0}, {0, 1, 0, 1}, {1, 1, 1, 1}, {0, 0, 1, 1}, {1, 0, 1, 0}},
+			{{0, 1, 0, 1}, {0, 0, 1, 1}, {1, 0, 1, 0}, {1, 0, 1, 0}, {1, 1, 0, 0}},
+			{{0, 1, 0, 1}, {1, 1, 0, 1}, {1, 0, 0, 1}, {1, 1, 0, 0}, {0, 1, 0, 1}}
 		}
 	};
 
@@ -209,10 +209,13 @@ public class ThermostatScript : MonoBehaviour {
 		SetButton.OnInteract += delegate () { pressSetButton(); return false; };
 
 		// Borrowed from Simon Literally Says. I have no idea what deligates do :/
-		//LightInfo.OnLightsChange += delegate(bool state) { Debug.Log("Lights Changed"); };//if(backlit != state) { backlit = state; }
-		//StartCoroutine(HandleLight());
-		Backlight[1].SetActive(false);
-		Backlight[0].SetActive(true);
+		LightInfo.OnLightsChange += delegate(bool state) {
+			if(backlit != state) { backlit = state; }
+			//Debug.Log("Lights Changed");
+		};
+		StartCoroutine(HandleLight());
+		//Backlight[1].SetActive(false);
+		//Backlight[0].SetActive(true);
 	}
 
 	void Start() {
@@ -282,45 +285,61 @@ public class ThermostatScript : MonoBehaviour {
 	}
 
 	void InitBoardShuffle() {
-		int[] SolAdd = new int[] {1, UnityEngine.Random.Range(1, 4)};
+		//Debug.Log(Bomb.GetIndicators().Count());
+		//Debug.Log(Bomb.GetPortPlateCount());
+		if (Bomb.GetIndicators().Count() > Bomb.GetPortPlateCount()){
+			correctSpace[0] = Bomb.GetIndicators().Count() - Bomb.GetPortPlateCount();
+		} else {
+			correctSpace[0] = Bomb.GetPortPlateCount() - Bomb.GetIndicators().Count();
+		}
+		if (correctSpace[0] > 3) { correctSpace[0] = correctSpace[0] % 3; }
+		if (correctSpace[0] == 0) { correctSpace[0] = 3; }
+		//Debug.Log(correctSpace[0]);
+		//correctSpace[0] = levelRefs[correctSpace[0] - 1];
+
+
+		//int DummyTracker = 1;
 		int BoardCount = 0;
+		int[] realSet = new int[] {UnityEngine.Random.Range(0, 5), UnityEngine.Random.Range(0, 5)};
 		int[] dummySet = new int[] {0, 0};
-		//Debug.Log(SolAdd[1]);
+		while (realSet[0] == currentSpace[0] && realSet[1] == currentSpace[1]) {
+			realSet[0] = UnityEngine.Random.Range(0, 5);
+			realSet[1] = UnityEngine.Random.Range(0, 5);
+		}
+		
 		for (int BOARD = 0; BOARD < 8; BOARD++){
 			if (levelRefs.Contains(BOARD)) {
 				BoardCount += 1;
-				dummySet[0] = UnityEngine.Random.Range(0, 5);
-				dummySet[1] = UnityEngine.Random.Range(0, 5);
+				dummySet = new int[] {UnityEngine.Random.Range(0, 5), UnityEngine.Random.Range(0, 5)};
+				if (correctSpace[0] - 1 == levelRefs.IndexOf(BOARD)) {
+					while (dummySet[0] == realSet[0] && dummySet[1] == realSet[1]) {
+						dummySet[0] = UnityEngine.Random.Range(0, 5);
+						dummySet[1] = UnityEngine.Random.Range(0, 5);
+					}
+				}
+				
 				for (int ROW = 0; ROW < 5; ROW++){
 					for (int COL = 0; COL < 5; COL++){
-						if (SolAdd[0] == 1 && SolAdd[1] == 1 && ROW == dummySet[0] && COL == dummySet[1]){
-							mazeContents[BOARD, ROW, COL, 0] = correctTemperature;
-							mazeContents[BOARD, ROW, COL, 1] = correctWeather;
-							correctSpace[0] = levelRefs.IndexOf(BOARD) + 1;
-							correctSpace[1] = COL;
-							correctSpace[2] = ROW;
-							SolAdd[0] = 0;
-							SolAdd[1] -= 1;
-						} else if (SolAdd[0] == 1 && SolAdd[1] != 1 && ROW == dummySet[0] && COL == dummySet[1]) {
-							mazeContents[BOARD, ROW, COL, 0] = correctTemperature;
-							mazeContents[BOARD, ROW, COL, 1] = UnityEngine.Random.Range(1, 10);
-							while (mazeContents[BOARD, ROW, COL, 1] == correctWeather) {
-								mazeContents[BOARD, ROW, COL, 1] = UnityEngine.Random.Range(1, 10);
+						if (correctSpace[0] - 1 == levelRefs.IndexOf(BOARD)) {
+							if (ROW == realSet[0] && COL == realSet[1]){
+								mazeContents[BOARD, ROW, COL, 0] = correctTemperature;
+								mazeContents[BOARD, ROW, COL, 1] = correctWeather;
+								correctSpace[1] = COL;
+								correctSpace[2] = ROW;
 							}
-							SolAdd[0] = 0;
-							SolAdd[1] -= 1;
-							//Debug.LogFormat("[Thermostat #{0}] Dummy space is located on maze {1} at {2}, {3}", moduleId, levelRefs.IndexOf(BOARD) + 1, COL, ROW);
 						} else {
-							mazeContents[BOARD, ROW, COL, 0] = UnityEngine.Random.Range(2, TempTypeConvers[TempType]+1);
+							if (ROW == dummySet[0] && COL == dummySet[1]) {
+								mazeContents[BOARD, ROW, COL, 0] = correctTemperature;
+							} else { mazeContents[BOARD, ROW, COL, 0] = UnityEngine.Random.Range(2, TempTypeConvers[TempType]+1); }
 							mazeContents[BOARD, ROW, COL, 1] = UnityEngine.Random.Range(1, 10);
-							while (mazeContents[BOARD, ROW, COL, 0] == correctTemperature) {
-								mazeContents[BOARD, ROW, COL, 0] = UnityEngine.Random.Range(2, TempTypeConvers[TempType]+1);
+							while (mazeContents[BOARD, ROW, COL, 0] == correctTemperature && mazeContents[BOARD, ROW, COL, 1] == correctWeather) {
+								mazeContents[BOARD, ROW, COL, 1] = UnityEngine.Random.Range(1, 10);
 							}
 						}
 					}
 				}
 			}
-			SolAdd[0] = 1;
+			//DummyTracker = 1;
 		}
 
 		Debug.LogFormat("[Thermostat #{0}] Target space is located on maze {1} at {2}, {3}", moduleId, correctSpace[0], correctSpace[1], correctSpace[2]);
@@ -354,7 +373,7 @@ public class ThermostatScript : MonoBehaviour {
 		currentSpace[2] += 1;
 		if (currentSpace[2] == 3){currentSpace[2] = 0;}
 		renderDisplay();
-		Debug.Log(currentSpace[2]);
+		//Debug.Log(currentSpace[2]);
 	}
 
 	void pressSetButton() {//KMSelectable button
