@@ -45,7 +45,7 @@ public class ThermostatScript : MonoBehaviour {
 
 	private string[] mazeNames = new string[] {"Alpha", "Beta", "Gamma", "Delta", "Epsilon", "Zeta", "Eta", "Theta"};
 	private int[] mazeWeather = new int[] {     9,       2,      6,       4,       5,         7,      3,     8};
-	private int[,] chartWeather = new int[,] {
+	private int[,] chartWeather = new int[,] { //Conversion table from mazeWeather to chartFull
 		{1, 1}, {1, 0}, {2, 0},
 		{2, 1}, {2, 2}, {0, 2},
 		{1, 2}, {0, 1}, {0, 0}
