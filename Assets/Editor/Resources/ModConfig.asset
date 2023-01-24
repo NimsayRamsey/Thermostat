@@ -14,7 +14,9 @@ MonoBehaviour:
   id: thermostat
   title: Thermostat
   author: Nimsay Ramsey
-  description: TBD
+  description: "Only father knows of its secrets\r\n\r\nHTML: Coming Soon\r\nPDF:
+    Coming Soon\r\nModule ID: thermostat\r\n\r\nBeep Sounds - copyc4t\r\nLicense -
+    CC3.0\r\n\r\nManual SVG: tandyCake\r\nTwitch Plays code: Quinn Wuest"
   version: 1
   outputFolder: build
-  previewImage: {fileID: 2800000, guid: afd9ca82e99036744a8368bb282037bf, type: 3}
+  previewImage: {fileID: 2800000, guid: 4e827a5ac9f56ef478de3fa6b5a982e4, type: 3}
